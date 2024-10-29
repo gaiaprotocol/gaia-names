@@ -1,8 +1,10 @@
-import { SPAInitializer } from "@common-module/app";
+import { Router, SPAInitializer } from "@common-module/app";
 import { AppCompConfig } from "@common-module/app-components";
 import { MaterialLoadingSpinner } from "@common-module/material-loading-spinner";
 import { UniversalWalletConnector } from "@common-module/wallet";
 import AppConfig, { IAppConfig } from "./AppConfig.js";
+import Layout from "./views/Layout.js";
+import HomeView from "./views/HomeView.js";
 
 export default async function init(config: IAppConfig) {
   AppConfig.init(config);
@@ -24,4 +26,8 @@ export default async function init(config: IAppConfig) {
       },
     },
   });
+
+  Router
+    .add("/*", Layout)
+    .add("/", HomeView);
 }

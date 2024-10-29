@@ -390,6 +390,7 @@ button.circle.disabled {
   gap: 34px;
 }
 .input {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 9px;
@@ -423,6 +424,18 @@ button.circle.disabled {
   height: 100px;
   padding: 13.5px;
   resize: vertical;
+}
+.input:has(.suffix-icon) > input,
+.input:has(.suffix-icon) > textarea {
+  padding-right: 40px;
+}
+.input > .suffix-icon {
+  position: absolute;
+  right: 13.5px;
+  bottom: 13.5px;
+}
+.input > .suffix-icon > .icon {
+  display: flex;
 }
 .select {
   display: flex;
@@ -647,19 +660,23 @@ li.chat-message-list-item > main {
 .chat-message-edit-form > form > .actions > button > .icon-container > .icon {
   font-size: 20px;
 }
-.logged-in-user-avatar-button > button.circle {
-  min-height: auto;
+.logged-in-user-avatar-button > button.avatar {
   padding: 0;
-  border: none;
-  background-color: transparent;
   transition: none;
+  gap: 12px;
+}
+.logged-in-user-avatar-button > button.avatar > .icon-container {
+  border-radius: 50%;
+}
+.logged-in-user-avatar-button > button.avatar > .name {
+  padding-right: 16px;
 }
 @media (pointer: fine) {
-  .logged-in-user-avatar-button > button.circle:hover {
+  .logged-in-user-avatar-button > button.avatar:hover > .icon-container {
     background-color: var(--circle-button-bg-color);
   }
 }
-.logged-in-user-avatar-button > button.circle:active {
+.logged-in-user-avatar-button > button.avatar:active > .icon-container {
   background-color: var(--circle-button-bg-color);
 }
 .logged-in-user-avatar-menu > header {
@@ -795,79 +812,7 @@ li.chat-message-list-item > main {
 .create-persona-form > footer > button {
   width: 100%;
 }
-.persona-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.navbar {
-  position: fixed;
-  left: 30px;
-  top: 90px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.navbar > .navbar-menu-item > .label {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.navbar:hover > .navbar-menu-item > .label {
-  opacity: 1;
-}
-.navbar > .navbar-menu-item,
-.navbar > .logged-in-user-avatar-button {
-  display: flex;
-  align-items: center;
-}
-.navbar > .logged-in-user-avatar-button {
-  display: none;
-  width: 24px;
-}
-.navbar > .logged-in-user-avatar-button > button,
-.navbar > .logged-in-user-avatar-button > button > .icon-container,
-.navbar > .logged-in-user-avatar-button svg {
-  width: 24px;
-  height: 24px;
-}
-@container (width <= 520px) {
-  .navbar {
-    left: 0;
-    top: auto;
-    bottom: 0;
-    width: 100%;
-    height: 56px;
-    flex-direction: row;
-    justify-content: space-evenly;
-    background-color: rgba(8, 8, 8, 0.8);
-    backdrop-filter: blur(24px);
-  }
-  .navbar > .navbar-menu-item > .label {
-    display: none;
-  }
-  .navbar > .logged-in-user-avatar-button {
-    display: flex;
-  }
-}
-.navbar-menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #616161;
-  transition: color 0.12s ease;
-}
-@media (pointer: fine) {
-  .navbar-menu-item:hover {
-    color: #fff;
-  }
-}
-.navbar-menu-item:active {
-  color: #fff;
-}
-.navbar-menu-item.active {
-  color: #fff;
-}
-.navbar-menu-item .icon {
+.gaia-protocol-logo {
   display: flex;
   align-items: center;
 }
@@ -908,9 +853,69 @@ li.chat-message-list-item > main {
   max-width: 720px;
   margin: 0 auto;
 }
-.onboarding-view {
-  max-width: 512px;
-  margin: 40px auto 80px;
+@font-face {
+  font-family: 'Trajan Pro';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/trajan-pro.woff') format('woff');
+}
+.home-view > .name-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 0 16px;
+  width: 100%;
+  max-width: 632px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.home-view > .name-form > h2 {
+  font-family: 'Trajan Pro';
+  font-size: 72px;
+}
+@container (width <= 520px) {
+  .home-view > .name-form > h2 {
+    font-size: 48px;
+  }
+}
+.home-view > .name-form > .input.name {
+  width: 100%;
+  font-size: 24px;
+}
+@container (width <= 520px) {
+  .home-view > .name-form > .input.name {
+    font-size: 16px;
+  }
+}
+.home-view > .name-form > .input.name > input {
+  height: 90px;
+  padding: 0 64px 0 24px;
+  border-width: 2px;
+  border-radius: 24px;
+}
+@container (width <= 520px) {
+  .home-view > .name-form > .input.name > input {
+    height: 68px;
+  }
+}
+.home-view > .name-form > .input.name > .suffix-icon {
+  right: 26px;
+  bottom: 34px;
+}
+@container (width <= 520px) {
+  .home-view > .name-form > .input.name > .suffix-icon {
+    bottom: 22px;
+  }
+}
+.home-view > .name-form > .input.name > .suffix-icon > .icon > svg {
+  width: 24px;
+  height: 24px;
+}
+.home-view > .name-form > .credit {
+  padding: 16px 0;
+  color: #b4b4b4;
 }
 
