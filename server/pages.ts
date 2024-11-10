@@ -21,7 +21,7 @@ export function pages(
     return new Response(
       createPage(
         {
-          title: (isDevMode ? "(Dev) " : "") + "The Gods NFT",
+          title: (isDevMode ? "(Dev) " : "") + "Gaia Names",
           jsFiles: [isDevMode ? "/bundle-dev.js" : "/bundle.js"],
           cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
           gtagId: GTAG_ID,
@@ -40,7 +40,7 @@ export function pages(
     return new Response(
       createPage(
         {
-          title: (isDevMode ? "(Dev) " : "") + "The Gods NFT",
+          title: (isDevMode ? "(Dev) " : "") + "Profile - Gaia Names",
           jsFiles: [isDevMode ? "/bundle-dev.js" : "/bundle.js"],
           cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
           gtagId: GTAG_ID,
@@ -58,7 +58,7 @@ export function pages(
     return new Response(
       createPage(
         {
-          title: (isDevMode ? "(Dev) " : "") + "The Gods NFT",
+          title: (isDevMode ? "(Dev) " : "") + "Register Name - Gaia Names",
           jsFiles: [isDevMode ? "/bundle-dev.js" : "/bundle.js"],
           cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
           gtagId: GTAG_ID,
