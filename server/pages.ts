@@ -63,7 +63,13 @@ export function pages(
           cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
           gtagId: GTAG_ID,
         },
-        layout(registerNameView()),
+        layout(
+          registerNameView(
+            new URLPattern({ pathname: "/:name/register" }).exec({
+              pathname: path,
+            })!.pathname.groups.name!,
+          ),
+        ),
       ),
       {
         status: 200,

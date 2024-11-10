@@ -1165,4 +1165,29 @@ li.chat-message-list-item > main {
     font-size: 27px;
   }
 }
+.register-name-view > .not-eligible > h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.register-name-view > .not-eligible > h2 > .icon {
+  display: flex;
+  align-items: center;
+}
+.register-name-view > .not-eligible > ul {
+  margin-top: 20px;
+  margin-left: 26px;
+  list-style: disc;
+}
+.register-name-view > .not-eligible > ul > li {
+  margin-bottom: 10px;
+}
+.register-name-view > .not-eligible > .buttons {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
