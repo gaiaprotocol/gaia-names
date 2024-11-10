@@ -1,5 +1,6 @@
 import { DomNode } from "@common-module/app";
 import { AppCompConfig } from "@common-module/app-components";
+import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
 
 export default class NameSearchResultList extends DomNode {
   private searchNonce = 0;
@@ -19,7 +20,8 @@ export default class NameSearchResultList extends DomNode {
     const loadingSpinner = new AppCompConfig.LoadingSpinner();
     this.addClass("loading").clear().append(loadingSpinner);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const names = await GaiaNameRepository.searchNames(query);
+    console.log(names);
 
     if (currentNonce === this.searchNonce) {
       loadingSpinner.remove();

@@ -12,6 +12,10 @@ class GaiaNameRepository extends SupabaseDataRepository<GaiaNameEntity> {
     );
     return data?.name;
   }
+
+  public async searchNames(query: string): Promise<GaiaNameEntity[]> {
+    return this.fetch((b) => b.ilike("name", `%${query}%`));
+  }
 }
 
 export default new GaiaNameRepository();
