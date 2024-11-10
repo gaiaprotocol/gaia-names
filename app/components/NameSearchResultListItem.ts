@@ -1,10 +1,12 @@
-import { DomNode } from "@common-module/app";
+import { DomNode, el, Router } from "@common-module/app";
 
 export default class NameSearchResultListItem extends DomNode {
   constructor(name: string) {
-    super(".name-search-result-list-item");
+    super("a.name-search-result-list-item");
     this.append(
-      name,
+      `${name}.gaia`,
+      el(".registered", "Registered"),
     );
+    this.onDom("click", () => Router.go(`/${name}.gaia`));
   }
 }

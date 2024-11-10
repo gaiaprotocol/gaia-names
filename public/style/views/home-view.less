@@ -56,6 +56,27 @@
           }
         }
 
+        &:has(input:placeholder-shown) {
+          >.suffix-icon>.icon-container>.icon.search {
+            display: flex;
+          }
+
+          >.suffix-icon>.icon-container>.icon.clear {
+            display: none;
+          }
+        }
+
+        &:not(:has(input:placeholder-shown)) {
+          >.suffix-icon>.icon-container>.icon.search {
+            display: none;
+          }
+
+          >.suffix-icon>.icon-container>.icon.clear {
+            display: flex;
+            cursor : pointer;
+          }
+        }
+
         >.suffix-icon {
           right : 26px;
           bottom: 34px;
@@ -64,7 +85,7 @@
             bottom: 22px;
           }
 
-          >.icon>svg {
+          >.icon-container>.icon>svg {
             width : 24px;
             height: 24px;
           }

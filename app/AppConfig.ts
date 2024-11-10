@@ -9,7 +9,6 @@ import { AddressUtils } from "@common-module/wallet";
 import { GaiaProtocolConfig } from "gaiaprotocol";
 import ProfileIcon from "./icons/ProfileIcon.js";
 import GaiaNameRepository from "./repositories/GaiaNameRepository.js";
-import HomeView from "./views/HomeView.js";
 
 export interface IAppConfig {
   isDevMode: boolean;
@@ -57,16 +56,15 @@ class AppConfig implements IAppConfig {
     };
 
     SocialCompConfig.getLoggedInUserMenu = async (menu, user) => {
-      console.log(user);
-
       return new DropdownMenuGroup(
         user.isFallback
           ? new DropdownMenuItem({
             icon: new ProfileIcon(),
-            label: "Set Gaia Name",
+            label: "Profile",
             onClick: () => {
-              Router.go("/");
-              HomeView.current?.nameInput.focus();
+              Router.go(
+                `/${user.name.endsWith(".gaia") ? user.name : user.id}`,
+              );
               menu.remove();
             },
           })

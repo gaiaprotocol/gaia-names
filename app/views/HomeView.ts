@@ -3,6 +3,7 @@ import { Input } from "@common-module/app-components";
 import { Debouncer } from "@common-module/ts";
 import FloatingNamesBackground from "../components/FloatingNamesBackground.js";
 import NameSearchResultModal from "../components/NameSearchResultModal.js";
+import ClearIcon from "../icons/ClearIcon.js";
 import SearchIcon from "../icons/SearchIcon.js";
 import Layout from "./Layout.js";
 
@@ -30,7 +31,14 @@ export default class HomeView extends View {
           el("h2", "Gaia Names"),
           this.nameInput = new Input(".name", {
             placeholder: "Search for a name",
-            suffixIcon: new SearchIcon(),
+            suffixIcon: el(
+              ".icon-container",
+              new SearchIcon(),
+              new ClearIcon().onDom("click", () => {
+                this.nameInput.value = "";
+                this.nameInput.focus();
+              }),
+            ),
             autoCapitalize: "none",
             onKeyDown: (event) => {
               if (event.key === ".") {

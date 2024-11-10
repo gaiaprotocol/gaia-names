@@ -2,7 +2,8 @@
   background-color: var(--page-bg-color);
   border          : 2px solid var(--input-focus-border-color);
   border-radius   : 24px;
-  padding         : 16px 24px;
+  padding-top     : 12px;
+  padding-bottom  : 16px;
 
   &.hidden {
     display: none;
@@ -13,5 +14,36 @@
     justify-content: center;
     align-items    : center;
     padding        : 32px;
+  }
+
+  >.available-name-display {
+    >h3 {
+      padding    : 12px 24px;
+      font-weight: bold;
+      color      : #b4b4b4;
+    }
+  }
+
+  .name-search-result-list-item,
+  .available-name {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    padding        : 12px 24px;
+    transition     : background-color 0.2s linear;
+
+    &:hover {
+      background-color: var(--text-button-hover-bg-color);
+    }
+
+    >.registered,
+    >.icon {
+      color: #b4b4b4;
+    }
+
+    >.icon {
+      display    : flex;
+      align-items: center;
+    }
   }
 }
