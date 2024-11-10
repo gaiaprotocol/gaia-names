@@ -45,7 +45,7 @@ class AppConfig implements IAppConfig {
     };
 
     SocialCompConfig.fetchUser = async (walletAddress: string) => {
-      const name = await GaiaNameRepository.fetchName(walletAddress);
+      const name = await GaiaNameRepository.fetchNameByWallet(walletAddress);
       return {
         id: walletAddress,
         name: name

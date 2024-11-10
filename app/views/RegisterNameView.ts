@@ -11,6 +11,7 @@ import AppConfig from "../AppConfig.js";
 import CalendarIcon from "../icons/CalendarIcon.js";
 import LockIcon from "../icons/LockIcon.js";
 import OpenInNewIcon from "../icons/OpenInNewIcon.js";
+import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
 import Layout from "./Layout.js";
 
 export default class RegisterNameView extends View {
@@ -24,21 +25,26 @@ export default class RegisterNameView extends View {
     Layout.content = this.container = registerNameView(data.name);
 
     if (WalletLoginManager.isLoggedIn) {
-      this.checkGodMode();
+      this.render(data.name.replace(".gaia", "").toLowerCase());
     } else {
       Router.goWithoutHistory("/");
     }
   }
 
-  private async checkGodMode() {
+  private async render(name: string) {
     const loading = new AppCompConfig.LoadingSpinner().appendTo(this.container);
 
-    const eligible = await AppConfig.supabaseConnector.callEdgeFunction(
-      "check-god-mode",
-    );
+    const [eligible, existingName] = await Promise.all([
+      AppConfig.supabaseConnector.callEdgeFunction(
+        "check-god-mode",
+      ),
+      GaiaNameRepository.fetchName(name),
+    ]);
 
     if (!eligible) {
       this.showNotEligible();
+    } else if (existingName) {
+      Router.goWithoutHistory(`/${name}.gaia`);
     } else {
       // show form
     }
