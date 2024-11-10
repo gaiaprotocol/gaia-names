@@ -14,6 +14,12 @@ import OpenInNewIcon from "../icons/OpenInNewIcon.js";
 import Layout from "./Layout.js";
 
 export default class RegisterNameView extends View {
+  constructor() {
+    super();
+    document.title = (AppConfig.isDevMode ? "(Dev) " : "") +
+      "Register Name - Gaia Names";
+  }
+
   public changeData(data: { name: string }): void {
     Layout.content = this.container = registerNameView(data.name);
 
