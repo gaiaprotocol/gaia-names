@@ -1107,9 +1107,36 @@ li.chat-message-list-item > main {
 .intro-view > section.name-search-form-container > main > .credit > a:hover {
   text-decoration-color: currentColor;
 }
+.profile-view {
+  margin: 86px auto;
+  max-width: 1128px;
+  padding: 0 20px;
+}
+@container (width <= 520px) {
+  .profile-view {
+    margin-top: 54px;
+  }
+}
+.profile-view > header {
+  margin-bottom: 42px;
+}
+@container (width <= 520px) {
+  .profile-view > header {
+    margin-bottom: 27px;
+  }
+}
+.profile-view > header > h1 {
+  font-size: 36px;
+}
+@container (width <= 520px) {
+  .profile-view > header > h1 {
+    font-size: 27px;
+  }
+}
 .register-name-view {
   margin: 86px auto;
   max-width: 1128px;
+  padding: 0 20px;
 }
 @container (width <= 520px) {
   .register-name-view {
