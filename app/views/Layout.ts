@@ -1,29 +1,29 @@
-import { BodyNode, DomNode, el, View } from "@common-module/app";
+import { DomNode, QueriedDomNode, Router } from "@common-module/app";
 import { LoggedInUserAvatarButton } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
-import GaiaProtocolLogo from "../components/GaiaProtocolLogo.js";
 
-export default class Layout extends View {
-  private static current: Layout;
+class Layout {
+  private contentContainer = new QueriedDomNode(".layout main");
 
-  public static set content(content: DomNode) {
-    Layout.current.contentContainer.append(content);
+  public set content(content: DomNode) {
+    this.contentContainer.clear();
+    this.contentContainer.htmlElement.innerHTML = "";
+    this.contentContainer.append(content);
   }
 
-  private contentContainer: DomNode;
+  public init() {
+    new QueriedDomNode(".layout header .buttons").append(
+      new LoggedInUserAvatarButton(WalletLoginManager, true),
+    );
 
-  constructor() {
-    super();
-    Layout.current = this;
-
-    this.container = el(
-      ".layout",
-      el(
-        "header",
-        new GaiaProtocolLogo(),
-        el(".buttons", new LoggedInUserAvatarButton(WalletLoginManager, true)),
-      ),
-      this.contentContainer = el("main"),
-    ).appendTo(BodyNode);
+    new QueriedDomNode(".layout header a.gaia-protocol-logo").onDom(
+      "click",
+      (event) => {
+        event.preventDefault();
+        Router.go("/");
+      },
+    );
   }
 }
+
+export default new Layout();

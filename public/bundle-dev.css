@@ -1045,12 +1045,31 @@ li.chat-message-list-item > main {
   align-items: center;
   height: 40px;
 }
-.home-view > section.name-search-form-container {
+.layout > footer {
+  display: flex;
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 108px 20px 34px;
+}
+.layout > footer > .credit {
+  flex-grow: 1;
+  color: #b4b4b4;
+  font-size: 14px;
+}
+.layout > footer > .credit > a {
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline-color);
+  transition: text-decoration-color 0.25s ease;
+}
+.layout > footer > .credit > a:hover {
+  text-decoration-color: currentColor;
+}
+.intro-view > section.name-search-form-container {
   position: relative;
   width: 100%;
   height: calc(100vh - 72px);
 }
-.home-view > section.name-search-form-container > .floating-names-background {
+.intro-view > section.name-search-form-container > .floating-names-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -1058,7 +1077,7 @@ li.chat-message-list-item > main {
   height: 100%;
   z-index: -1;
 }
-.home-view > section.name-search-form-container > main {
+.intro-view > section.name-search-form-container > main {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1071,19 +1090,52 @@ li.chat-message-list-item > main {
   align-items: center;
   gap: 32px;
 }
-.home-view > section.name-search-form-container > main > h2 {
+.intro-view > section.name-search-form-container > main > h2 {
   font-size: 72px;
 }
 @container (width <= 520px) {
-  .home-view > section.name-search-form-container > main > h2 {
+  .intro-view > section.name-search-form-container > main > h2 {
     font-size: 48px;
   }
 }
-.home-view > section.name-search-form-container > main > .name-search-form {
+.intro-view > section.name-search-form-container > main > .name-search-form {
   width: 100%;
 }
-.home-view > section.name-search-form-container > main > .credit {
+.intro-view > section.name-search-form-container > main > .credit {
   padding: 16px 0;
   color: #b4b4b4;
+}
+.intro-view > section.name-search-form-container > main > .credit > a {
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline-color);
+  transition: text-decoration-color 0.25s ease;
+}
+.intro-view > section.name-search-form-container > main > .credit > a:hover {
+  text-decoration-color: currentColor;
+}
+.register-name-view {
+  margin: 86px auto;
+  max-width: 1128px;
+}
+@container (width <= 520px) {
+  .register-name-view {
+    margin-top: 54px;
+  }
+}
+.register-name-view > header {
+  margin-bottom: 42px;
+}
+@container (width <= 520px) {
+  .register-name-view > header {
+    margin-bottom: 27px;
+  }
+}
+.register-name-view > header > h1 {
+  font-size: 36px;
+}
+@container (width <= 520px) {
+  .register-name-view > header > h1 {
+    font-size: 27px;
+  }
 }
 

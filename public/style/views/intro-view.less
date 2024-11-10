@@ -1,0 +1,59 @@
+.intro-view {
+  >section.name-search-form-container {
+    position: relative;
+    width   : 100%;
+    height  : calc(100vh - 72px);
+
+    >.floating-names-background {
+      position: absolute;
+      top     : 0;
+      left    : 0;
+      width   : 100%;
+      height  : 100%;
+      z-index : -1;
+    }
+
+    >main {
+      position : absolute;
+      top      : 50%;
+      left     : 50%;
+      transform: translate(-50%, -50%);
+      padding  : 0 16px;
+
+      width    : 100%;
+      max-width: 632px;
+
+      display       : flex;
+      flex-direction: column;
+      align-items   : center;
+      gap           : 32px;
+
+      >h2 {
+        font-size: 72px;
+
+        @container (width <=@phone-width) {
+          font-size: 48px;
+        }
+      }
+
+      >.name-search-form {
+        width: 100%;
+      }
+
+      >.credit {
+        padding: 16px 0;
+        color  : #b4b4b4;
+
+        >a {
+          text-decoration      : underline;
+          text-decoration-color: var(--link-underline-color);
+          transition           : text-decoration-color 0.25s ease;
+
+          &:hover {
+            text-decoration-color: currentColor;
+          }
+        }
+      }
+    }
+  }
+}

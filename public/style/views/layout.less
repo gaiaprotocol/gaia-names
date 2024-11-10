@@ -28,4 +28,27 @@
   }
 
   >main {}
+
+  >footer {
+    display  : flex;
+    max-width: 1128px;
+    margin   : 0 auto;
+    padding  : 108px 20px 34px;
+
+    >.credit {
+      flex-grow: 1;
+      color    : #b4b4b4;
+      font-size: 14px;
+
+      >a {
+        text-decoration      : underline;
+        text-decoration-color: var(--link-underline-color);
+        transition           : text-decoration-color 0.25s ease;
+
+        &:hover {
+          text-decoration-color: currentColor;
+        }
+      }
+    }
+  }
 }
