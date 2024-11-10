@@ -45,7 +45,11 @@ export function pages(
           cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
           gtagId: GTAG_ID,
         },
-        layout(profileView()),
+        layout(profileView(
+          new URLPattern({ pathname: "/:name" }).exec({
+            pathname: path,
+          })!.pathname.groups.name!,
+        )),
       ),
       {
         status: 200,

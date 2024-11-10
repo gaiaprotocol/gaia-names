@@ -1,10 +1,11 @@
-import { el, Router, View } from "@common-module/app";
+import { el, QueriedDomNode, Router, View } from "@common-module/app";
 import {
   Alert,
   AppCompConfig,
   Button,
   ButtonType,
 } from "@common-module/app-components";
+import { UserManager } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
 import { registerNameView } from "../../pages/registerNameView.js";
 import AppConfig from "../AppConfig.js";
@@ -23,6 +24,14 @@ export default class RegisterNameView extends View {
 
   public changeData(data: { name: string }): void {
     Layout.content = this.container = registerNameView(data.name);
+
+    new QueriedDomNode(".register-name-view header a.back").onDom(
+      "click",
+      (event) => {
+        event.preventDefault();
+        Router.go("/");
+      },
+    );
 
     if (WalletLoginManager.isLoggedIn) {
       this.render(data.name.replace(".gaia", "").toLowerCase());
@@ -46,14 +55,14 @@ export default class RegisterNameView extends View {
     } else if (existingName) {
       Router.goWithoutHistory(`/${name}.gaia`);
     } else {
-      // show form
+      this.showRegisterForm(name);
     }
 
     loading.remove();
   }
 
   private showNotEligible() {
-    el(
+    this.container.append(el(
       ".not-eligible",
       el("h2", new LockIcon(), "God Mode Required"),
       el(
@@ -91,6 +100,48 @@ export default class RegisterNameView extends View {
           },
         }),
       ),
-    ).appendTo(this.container);
+    ));
+  }
+
+  private showRegisterForm(name: string) {
+    this.container.append(
+      el(
+        ".register-form",
+        el(
+          "p",
+          "Would you like to register ",
+          el("b", `${name}.gaia`),
+          " as your wallet name?\nThe name will remain valid only while you maintain ",
+          el("b", "God Mode"),
+          " by holding either 10,000 $GAIA or at least one The Gods NFT.",
+        ),
+        el(
+          ".buttons",
+          new Button({
+            type: ButtonType.Outlined,
+            title: "Cancel",
+            onClick: () => Router.go("/"),
+          }),
+          new Button({
+            type: ButtonType.Contained,
+            title: "Register Name",
+            onClick: async () => {
+              await AppConfig.supabaseConnector.callEdgeFunction(
+                "set-gaia-name",
+                { name },
+              );
+              if (WalletLoginManager.loggedInAddress) {
+                const user = await UserManager.getUser(
+                  WalletLoginManager.loggedInAddress,
+                );
+                user.name = `${name}.gaia`;
+                UserManager.setUser(user);
+              }
+              Router.go(`/${name}.gaia`);
+            },
+          }),
+        ),
+      ),
+    );
   }
 }

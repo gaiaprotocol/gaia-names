@@ -28,7 +28,7 @@ export default class NameSearchResultModal extends DomNode {
     const currentNonce = this.searchNonce;
 
     const loadingSpinner = new AppCompConfig.LoadingSpinner();
-    this.addClass("loading").clear().append(loadingSpinner);
+    this.addClass("loading").clear(this.resultList).append(loadingSpinner);
 
     const names = await GaiaNameRepository.searchNames(query);
     const exactMatch = names.some((n) =>

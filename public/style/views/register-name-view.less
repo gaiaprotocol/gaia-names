@@ -1,6 +1,6 @@
 .register-name-view {
   margin   : 86px auto;
-  max-width: 1128px;
+  max-width: 720px;
   padding  : 0 20px;
 
   @container (width <=@phone-width) {
@@ -8,10 +8,20 @@
   }
 
   >header {
+    display    : flex;
+    align-items: center;
+    gap        : 20px;
+
     margin-bottom: 42px;
 
     @container (width <=@phone-width) {
       margin-bottom: 27px;
+    }
+
+    >a.back {
+      display    : flex;
+      align-items: center;
+      padding    : 4px;
     }
 
     >h1 {
@@ -20,6 +30,16 @@
       @container (width <=@phone-width) {
         font-size: 27px;
       }
+    }
+  }
+
+  >.register-form {
+    >.buttons {
+      margin-top     : 30px;
+      display        : flex;
+      align-items    : center;
+      justify-content: flex-end;
+      gap            : 16px;
     }
   }
 
