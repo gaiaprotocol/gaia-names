@@ -1,5 +1,5 @@
 .home-view {
-  >.name-form-container {
+  >section.name-search-form-container {
     position: relative;
     width   : 100%;
     height  : calc(100vh - 72px);
@@ -13,7 +13,7 @@
       z-index : -1;
     }
 
-    >.name-form {
+    >main {
       position : absolute;
       top      : 50%;
       left     : 50%;
@@ -36,71 +36,8 @@
         }
       }
 
-      >.input.name {
-        width           : 100%;
-        font-size       : 24px;
-        background-color: var(--page-bg-color);
-
-        @container (width <=@phone-width) {
-          font-size: 16px;
-        }
-
-        >input {
-          height       : 90px;
-          padding      : 0 64px 0 24px;
-          border-width : 2px;
-          border-radius: 24px;
-
-          @container (width <=@phone-width) {
-            height: 68px;
-          }
-        }
-
-        &:has(input:placeholder-shown) {
-          >.suffix-icon>.icon-container>.icon.search {
-            display: flex;
-          }
-
-          >.suffix-icon>.icon-container>.icon.clear {
-            display: none;
-          }
-        }
-
-        &:not(:has(input:placeholder-shown)) {
-          >.suffix-icon>.icon-container>.icon.search {
-            display: none;
-          }
-
-          >.suffix-icon>.icon-container>.icon.clear {
-            display: flex;
-            cursor : pointer;
-          }
-        }
-
-        >.suffix-icon {
-          right : 26px;
-          bottom: 34px;
-
-          @container (width <=@phone-width) {
-            bottom: 22px;
-          }
-
-          >.icon-container>.icon>svg {
-            width : 24px;
-            height: 24px;
-          }
-        }
-      }
-
-      >.name-search-result-modal {
-        position: absolute;
-        top     : 224px;
-
-        @container (width <=@phone-width) {
-          top: 170px;
-        }
-
-        width : calc(100% - 32px);
+      >.name-search-form {
+        width: 100%;
       }
 
       >.credit {

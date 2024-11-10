@@ -1,53 +1,20 @@
 import { el, View } from "@common-module/app";
-import { Input } from "@common-module/app-components";
-import { Debouncer } from "@common-module/ts";
 import FloatingNamesBackground from "../components/FloatingNamesBackground.js";
-import NameSearchResultModal from "../components/NameSearchResultModal.js";
-import ClearIcon from "../icons/ClearIcon.js";
-import SearchIcon from "../icons/SearchIcon.js";
+import NameSearchForm from "../components/NameSearchForm.js";
 import Layout from "./Layout.js";
 
 export default class HomeView extends View {
-  public static current: HomeView | undefined;
-
-  public nameInput: Input;
-  private nameSearchResultModal: NameSearchResultModal;
-
-  private nameChangeDebouncer = new Debouncer(300, () => {
-    this.searchNames();
-  });
-
   constructor() {
     super();
-    HomeView.current = this;
-
     Layout.content = this.container = el(
       ".home-view",
       el(
-        ".name-form-container",
+        "section.name-search-form-container",
         new FloatingNamesBackground(),
         el(
-          ".name-form",
+          "main",
           el("h2", "Gaia Names"),
-          this.nameInput = new Input(".name", {
-            placeholder: "Search for a name",
-            suffixIcon: el(
-              ".icon-container",
-              new SearchIcon(),
-              new ClearIcon().onDom("click", () => {
-                this.nameInput.value = "";
-                this.nameInput.focus();
-              }),
-            ),
-            autoCapitalize: "none",
-            onKeyDown: (event) => {
-              if (event.key === ".") {
-                event.preventDefault();
-              }
-            },
-            onChange: () => this.nameChangeDebouncer.execute(),
-          }),
-          this.nameSearchResultModal = new NameSearchResultModal(),
+          new NameSearchForm(),
           el(
             ".credit",
             "Created by ",
@@ -59,22 +26,5 @@ export default class HomeView extends View {
         ),
       ),
     );
-
-    this.nameSearchResultModal.addClass("hidden");
-  }
-
-  private async searchNames(): Promise<void> {
-    const name = this.nameInput.value.trim().toLowerCase();
-    if (name.length === 0) {
-      this.nameSearchResultModal.addClass("hidden");
-    } else {
-      this.nameSearchResultModal.removeClass("hidden");
-      this.nameSearchResultModal.query = name;
-    }
-  }
-
-  public close(): void {
-    super.close();
-    HomeView.current = undefined;
   }
 }
