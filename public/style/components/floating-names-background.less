@@ -1,0 +1,33 @@
+.floating-names-background {
+  overflow: hidden;
+
+  >.name-item {
+    display        : flex;
+    align-items    : center;
+    gap            : 8px;
+    background     : rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    padding        : 8px 16px;
+    border-radius  : 9999px;
+
+    >.dot {
+      width        : 8px;
+      height       : 8px;
+      background   : rgb(74, 222, 128);
+      border-radius: 50%;
+    }
+
+    >.name {
+      color      : white;
+      font-size  : 14px;
+      font-weight: 500;
+    }
+  }
+
+  >.foreground-overlay {
+    position        : absolute;
+    inset           : 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index         : 999999;
+  }
+}

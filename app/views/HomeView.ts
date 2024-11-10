@@ -1,5 +1,6 @@
 import { el, View } from "@common-module/app";
 import { Input } from "@common-module/app-components";
+import FloatingNamesBackground from "../components/FloatingNamesBackground.js";
 import SearchIcon from "../icons/SearchIcon.js";
 import Layout from "./Layout.js";
 
@@ -15,19 +16,23 @@ export default class HomeView extends View {
     Layout.content = this.container = el(
       ".home-view",
       el(
-        ".name-form",
-        el("h2", "Gaia Names"),
-        this.nameInput = new Input(".name", {
-          placeholder: "Search for a name",
-          suffixIcon: new SearchIcon(),
-        }),
+        ".name-form-container",
+        new FloatingNamesBackground(),
         el(
-          ".credit",
-          "Created by ",
-          el("a", "Gaia Protocol", {
-            href: "https://gaiaprotocol.com",
-            target: "_blank",
+          ".name-form",
+          el("h2", "Gaia Names"),
+          this.nameInput = new Input(".name", {
+            placeholder: "Search for a name",
+            suffixIcon: new SearchIcon(),
           }),
+          el(
+            ".credit",
+            "Created by ",
+            el("a", "Gaia Protocol", {
+              href: "https://gaiaprotocol.com",
+              target: "_blank",
+            }),
+          ),
         ),
       ),
     );
