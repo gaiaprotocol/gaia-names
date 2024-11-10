@@ -41,11 +41,17 @@ class AppConfig implements IAppConfig {
 
     GaiaProtocolConfig.init(config.isDevMode, config.isDevMode);
 
+    SocialCompConfig.goLoggedInUserProfile = async (user) => {
+      Router.go(`/${user.name.endsWith(".gaia") ? user.name : user.id}`);
+    };
+
     SocialCompConfig.fetchUser = async (walletAddress: string) => {
       const name = await GaiaNameRepository.fetchName(walletAddress);
       return {
         id: walletAddress,
-        name: name ? name : AddressUtils.shortenAddress(walletAddress),
+        name: name
+          ? `${name}.gaia`
+          : AddressUtils.shortenAddress(walletAddress),
         isFallback: true,
       };
     };

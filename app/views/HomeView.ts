@@ -2,7 +2,7 @@ import { el, View } from "@common-module/app";
 import { Input } from "@common-module/app-components";
 import { Debouncer } from "@common-module/ts";
 import FloatingNamesBackground from "../components/FloatingNamesBackground.js";
-import NameSearchResultList from "../components/NameSearchResultList.js";
+import NameSearchResultModal from "../components/NameSearchResultModal.js";
 import SearchIcon from "../icons/SearchIcon.js";
 import Layout from "./Layout.js";
 
@@ -10,7 +10,7 @@ export default class HomeView extends View {
   public static current: HomeView | undefined;
 
   public nameInput: Input;
-  private nameSearchResultList: NameSearchResultList;
+  private nameSearchResultModal: NameSearchResultModal;
 
   private nameChangeDebouncer = new Debouncer(300, () => {
     this.searchNames();
@@ -31,9 +31,15 @@ export default class HomeView extends View {
           this.nameInput = new Input(".name", {
             placeholder: "Search for a name",
             suffixIcon: new SearchIcon(),
+            autoCapitalize: "none",
+            onKeyDown: (event) => {
+              if (event.key === ".") {
+                event.preventDefault();
+              }
+            },
             onChange: () => this.nameChangeDebouncer.execute(),
           }),
-          this.nameSearchResultList = new NameSearchResultList(),
+          this.nameSearchResultModal = new NameSearchResultModal(),
           el(
             ".credit",
             "Created by ",
@@ -46,16 +52,16 @@ export default class HomeView extends View {
       ),
     );
 
-    this.nameSearchResultList.addClass("hidden");
+    this.nameSearchResultModal.addClass("hidden");
   }
 
   private async searchNames(): Promise<void> {
-    const name = this.nameInput.value.trim();
+    const name = this.nameInput.value.trim().toLowerCase();
     if (name.length === 0) {
-      this.nameSearchResultList.addClass("hidden");
+      this.nameSearchResultModal.addClass("hidden");
     } else {
-      this.nameSearchResultList.removeClass("hidden");
-      this.nameSearchResultList.query = name;
+      this.nameSearchResultModal.removeClass("hidden");
+      this.nameSearchResultModal.query = name;
     }
   }
 

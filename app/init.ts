@@ -5,6 +5,8 @@ import { UniversalWalletConnector } from "@common-module/wallet";
 import AppConfig, { IAppConfig } from "./AppConfig.js";
 import Layout from "./views/Layout.js";
 import HomeView from "./views/HomeView.js";
+import ProfileView from "./views/ProfileView.js";
+import RegisterNameView from "./views/RegisterNameView.js";
 
 export default async function init(config: IAppConfig) {
   AppConfig.init(config);
@@ -29,5 +31,7 @@ export default async function init(config: IAppConfig) {
 
   Router
     .add("/*", Layout)
-    .add("/", HomeView);
+    .add("/", HomeView)
+    .add("/:name", ProfileView)
+    .add("/:name/register", RegisterNameView);
 }

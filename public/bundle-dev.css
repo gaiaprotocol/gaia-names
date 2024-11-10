@@ -915,16 +915,16 @@ li.chat-message-list-item > main {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999999;
 }
-.name-search-result-list {
+.name-search-result-modal {
   background-color: var(--page-bg-color);
   border: 2px solid var(--input-focus-border-color);
   border-radius: 24px;
   padding: 16px 24px;
 }
-.name-search-result-list.hidden {
+.name-search-result-modal.hidden {
   display: none;
 }
-.name-search-result-list.loading {
+.name-search-result-modal.loading {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1031,13 +1031,13 @@ li.chat-message-list-item > main {
   width: 24px;
   height: 24px;
 }
-.home-view > .name-form-container > .name-form > .name-search-result-list {
+.home-view > .name-form-container > .name-form > .name-search-result-modal {
   position: absolute;
   top: 224px;
   width: calc(100% - 32px);
 }
 @container (width <= 520px) {
-  .home-view > .name-form-container > .name-form > .name-search-result-list {
+  .home-view > .name-form-container > .name-form > .name-search-result-modal {
     top: 170px;
   }
 }
