@@ -71,6 +71,17 @@
         }
       }
 
+      >.name-search-result-list {
+        position: absolute;
+        top     : 224px;
+
+        @container (width <=@phone-width) {
+          top: 170px;
+        }
+
+        width : calc(100% - 32px);
+      }
+
       >.credit {
         padding: 16px 0;
         color  : #b4b4b4;
