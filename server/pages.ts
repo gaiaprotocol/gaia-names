@@ -2,7 +2,7 @@ import { el as UniversalEl, html } from "@common-module/universal-page";
 import {
   createPage,
   el,
-} from "https://raw.githubusercontent.com/yjgaia/deno-module/main/page.ts";
+} from "https://raw.githubusercontent.com/yjgaia/deno-module/refs/heads/main/page.ts";
 import { introView } from "../pages/introView.ts";
 import { profileView } from "../pages/profileView.ts";
 import { registerNameView } from "../pages/registerNameView.ts";
