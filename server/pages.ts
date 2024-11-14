@@ -12,6 +12,7 @@ UniversalEl.impl = el;
 html.impl = (htmlContent) => htmlContent;
 
 const GTAG_ID = "G-4CPW07T0ZS";
+const VERSION = "0.0.1";
 
 export function pages(
   path: string,
@@ -22,8 +23,12 @@ export function pages(
       createPage(
         {
           title: (isDevMode ? "(Dev) " : "") + "Gaia Names",
-          jsFiles: [isDevMode ? "/bundle-dev.js" : "/bundle.js"],
-          cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
+          jsFiles: [
+            `${isDevMode ? "/bundle-dev.js" : "/bundle.js"}?v=${VERSION}`,
+          ],
+          cssFiles: [
+            `${isDevMode ? "/bundle-dev.css" : "/bundle.css"}?v=${VERSION}`,
+          ],
           gtagId: GTAG_ID,
         },
         layout(introView()),
@@ -41,8 +46,12 @@ export function pages(
       createPage(
         {
           title: (isDevMode ? "(Dev) " : "") + "Profile - Gaia Names",
-          jsFiles: [isDevMode ? "/bundle-dev.js" : "/bundle.js"],
-          cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
+          jsFiles: [
+            `${isDevMode ? "/bundle-dev.js" : "/bundle.js"}?v=${VERSION}`,
+          ],
+          cssFiles: [
+            `${isDevMode ? "/bundle-dev.css" : "/bundle.css"}?v=${VERSION}`,
+          ],
           gtagId: GTAG_ID,
         },
         layout(profileView(
@@ -63,8 +72,12 @@ export function pages(
       createPage(
         {
           title: (isDevMode ? "(Dev) " : "") + "Register Name - Gaia Names",
-          jsFiles: [isDevMode ? "/bundle-dev.js" : "/bundle.js"],
-          cssFiles: [isDevMode ? "/bundle-dev.css" : "/bundle.css"],
+          jsFiles: [
+            `${isDevMode ? "/bundle-dev.js" : "/bundle.js"}?v=${VERSION}`,
+          ],
+          cssFiles: [
+            `${isDevMode ? "/bundle-dev.css" : "/bundle.css"}?v=${VERSION}`,
+          ],
           gtagId: GTAG_ID,
         },
         layout(

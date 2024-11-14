@@ -38,7 +38,12 @@ class AppConfig implements IAppConfig {
 
     GaiaNameRepository.supabaseConnector = this.supabaseConnector;
 
-    GaiaProtocolConfig.init(config.isDevMode, config.isDevMode);
+    GaiaProtocolConfig.init(
+      config.isDevMode,
+      config.isDevMode,
+      this.supabaseConnector,
+      authTokenManager,
+    );
 
     SocialCompConfig.goLoggedInUserProfile = async (user) => {
       Router.go(`/${user.name.endsWith(".gaia") ? user.name : user.id}`);
