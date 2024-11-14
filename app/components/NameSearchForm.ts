@@ -1,8 +1,7 @@
 import { DomNode, el } from "@common-module/app";
 import { Input } from "@common-module/app-components";
 import { Debouncer } from "@common-module/ts";
-import ClearIcon from "../icons/ClearIcon.js";
-import SearchIcon from "../icons/SearchIcon.js";
+import { ClearIcon, SearchIcon } from "@gaiaprotocol/svg-icons";
 import NameSearchResultModal from "./NameSearchResultModal.js";
 
 export default class NameSearchForm extends DomNode {

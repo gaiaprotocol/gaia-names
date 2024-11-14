@@ -6,8 +6,9 @@ import {
 import { SocialCompConfig } from "@common-module/social-components";
 import { AuthTokenManager, SupabaseConnector } from "@common-module/supabase";
 import { AddressUtils } from "@common-module/wallet";
+import { ProfileIcon } from "@gaiaprotocol/svg-icons";
+import { GaiaUIPreset } from "@gaiaprotocol/ui-preset";
 import { GaiaProtocolConfig } from "gaiaprotocol";
-import ProfileIcon from "./icons/ProfileIcon.js";
 import GaiaNameRepository from "./repositories/GaiaNameRepository.js";
 
 export interface IAppConfig {
@@ -27,6 +28,7 @@ class AppConfig implements IAppConfig {
 
   public init(config: IAppConfig) {
     Object.assign(this, config);
+    GaiaUIPreset.init();
 
     const authTokenManager = new AuthTokenManager("gaia-names-auth-token");
 

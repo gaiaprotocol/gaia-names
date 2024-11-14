@@ -1,6 +1,6 @@
 import { DomNode, el, Router } from "@common-module/app";
 import { AppCompConfig } from "@common-module/app-components";
-import NextIcon from "../icons/NextIcon.js";
+import { NextIcon } from "@gaiaprotocol/svg-icons";
 import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
 import NameSearchResultList from "./NameSearchResultList.js";
 

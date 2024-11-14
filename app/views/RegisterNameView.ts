@@ -1,17 +1,15 @@
 import { el, QueriedDomNode, Router, View } from "@common-module/app";
 import {
-  Alert,
+  AlertDialog,
   AppCompConfig,
   Button,
   ButtonType,
 } from "@common-module/app-components";
 import { UserManager } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
+import { CalendarIcon, LockIcon, OpenInNewIcon } from "@gaiaprotocol/svg-icons";
 import { registerNameView } from "../../pages/registerNameView.js";
 import AppConfig from "../AppConfig.js";
-import CalendarIcon from "../icons/CalendarIcon.js";
-import LockIcon from "../icons/LockIcon.js";
-import OpenInNewIcon from "../icons/OpenInNewIcon.js";
 import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
 import Layout from "./Layout.js";
 
@@ -82,7 +80,7 @@ export default class RegisterNameView extends View {
           iconPosition: "right",
           title: "Buy $GAIA",
           onClick: () => {
-            new Alert({
+            new AlertDialog({
               icon: new CalendarIcon(),
               title: "$GAIA Launch Schedule",
               message:

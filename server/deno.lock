@@ -117,7 +117,12 @@
     "https://deno.land/std@0.223.0/version.ts": "a25bd16c3b9f0d2861d9fc570eb356441e862cb35013a4d8333b946c0c39fa21",
     "https://raw.githubusercontent.com/yjgaia/deno-module/main/api.ts": "f0fe809bebba72c4f25da7cfcfb4e0dd1e056957f9bdf58816f79fea87f79303",
     "https://raw.githubusercontent.com/yjgaia/deno-module/main/page.ts": "d632020796af992f53f6a1b7b4ea289b1e0a93a2736794d5df2d1729184be7c9",
-    "https://raw.githubusercontent.com/yjgaia/universal-page-module/main/src/mod.ts": "ea971e59d1c8d2d0d023301daa35c953b2177fdbcdef711c07b878812dce05a5"
+    "https://raw.githubusercontent.com/yjgaia/deno-module/refs/heads/main/api.ts": "fe39901d58dd30153e5255238b2b7248eea7655d104f02b1623100bcc3d8b199",
+    "https://raw.githubusercontent.com/yjgaia/deno-module/refs/heads/main/page.ts": "7adf691efb54ae7d55daba4af36ae0701b0e2a1ed34c6d119baadd848775bfec",
+    "https://raw.githubusercontent.com/yjgaia/universal-page-module/main/src/mod.ts": "ea971e59d1c8d2d0d023301daa35c953b2177fdbcdef711c07b878812dce05a5",
+    "https://raw.githubusercontent.com/yjgaia/universal-page-module/refs/heads/main/deno/mod.ts": "5cfdb206a700d017ee7fc6934106ad09207374f0a06141ff112fb3749d705811",
+    "https://raw.githubusercontent.com/yjgaia/universal-page-module/refs/heads/main/lib/el.js": "b45142907b58c3ac84cc0a9270c317cc6dbc4db6c4d18512f634f37bf0928093",
+    "https://raw.githubusercontent.com/yjgaia/universal-page-module/refs/heads/main/lib/html.js": "1efe6ad280e951edf06c1fbcead47c34e5cd8101b5c4bf8f09d3d3fc678374ef"
   },
   "workspace": {
     "dependencies": [
