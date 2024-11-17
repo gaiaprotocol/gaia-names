@@ -15,7 +15,14 @@ export default class ProfileView extends View {
 
   public changeData(data: { name: string }): void {
     Layout.content = this.container = profileView(data.name);
-    this.loadName(data.name.replace(".gaia", "").toLowerCase());
+    if (data.name.endsWith(".gaia")) {
+      this.loadName(data.name.replace(".gaia", "").toLowerCase());
+    } else {
+      this.showProfile({
+        wallet_address: data.name,
+        name: data.name,
+      });
+    }
   }
 
   private async loadName(name: string) {

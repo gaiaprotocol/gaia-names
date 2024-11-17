@@ -248,6 +248,11 @@ button.contained .material-loading-spinner > svg > circle {
 :root {
   background-color: var(--page-bg-color);
 }
+html,
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
 body {
   color: var(--paragraph-text-color);
   font-family: Söhne;
@@ -590,6 +595,24 @@ a.button.circle.disabled {
 .dropdown-menu-item:hover {
   background-color: var(--dropdown-menu-item-hover-bg-color);
 }
+.non-modal-dialog-container:has(*) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  backdrop-filter: blur(50px);
+  background-color: var(--overlay-color);
+  animation: fade-in 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.non-modal-dialog-container:has(*) > dialog {
+  margin: 21px auto;
+  max-height: calc(100% - 42px);
+}
 dialog.modal {
   width: 90%;
   max-width: 600px;
@@ -663,9 +686,11 @@ dialog.modal.alert-dialog > header > h1 {
 .accordion-item > .content {
   padding-bottom: 15px;
 }
-.svg-icon {
+.icon.svg {
   display: flex;
   align-items: center;
+  width: 24px;
+  height: 24px;
 }
 /* Social Components */
 .author-name-display {
@@ -799,41 +824,13 @@ li.chat-message-list-item > main {
   display: flex;
   align-items: center;
 }
-.wallet-connection-content {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+.non-modal-dialog-container:has(.wallet-connection-modal),
+.non-modal-dialog-container:has(.wallet-login-modal) {
+  z-index: 99997;
 }
-.wallet-connection-content > section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.wallet-connection-content > section > h2 {
-  font-size: 22px;
-}
-@container (width <= 520px) {
-  .wallet-connection-content > section > h2 {
-    font-size: 18px;
-  }
-}
-.wallet-login-content {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-.wallet-login-content > section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.wallet-login-content > section > h2 {
-  font-size: 22px;
-}
-@container (width <= 520px) {
-  .wallet-login-content > section > h2 {
-    font-size: 18px;
-  }
+.wallet-connection-modal,
+.wallet-login-modal {
+  max-width: 480px !important;
 }
 .confirm-dialog.sign-message .alert.info {
   margin-top: 22px;

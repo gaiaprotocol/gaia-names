@@ -6,7 +6,7 @@
   "type": "module",
   "dependencies": {
     "@gaiaprotocol/ui-preset": "^0.0.1",
-    "gaiaprotocol": "^0.1.5"
+    "gaiaprotocol": "^0.2.2"
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
