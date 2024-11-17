@@ -9,7 +9,7 @@ import { AddressUtils } from "@common-module/wallet";
 import { WalletLoginConfig } from "@common-module/wallet-login";
 import { ProfileIcon } from "@gaiaprotocol/svg-icons";
 import { GaiaUIPreset } from "@gaiaprotocol/ui-preset";
-import { base, baseSepolia } from "@wagmi/core/chains";
+import { mainnet } from "@wagmi/core/chains";
 import { GaiaProtocolConfig } from "gaiaprotocol";
 import GaiaNameRepository from "./repositories/GaiaNameRepository.js";
 
@@ -43,7 +43,7 @@ class AppConfig {
     );
 
     WalletLoginConfig.init({
-      chains: [config.isDevMode ? baseSepolia : base] as any,
+      chains: [mainnet] as any,
       walletConnectProjectId: config.walletConnectProjectId,
       supabaseConnector: this.supabaseConnector,
     });
