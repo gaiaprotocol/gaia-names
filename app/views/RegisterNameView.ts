@@ -31,7 +31,7 @@ export default class RegisterNameView extends View {
       },
     );
 
-    if (WalletLoginManager.isLoggedIn) {
+    if (WalletLoginManager.isLoggedIn()) {
       this.render(data.name.replace(".gaia", "").toLowerCase());
     } else {
       Router.goWithoutHistory("/");
@@ -128,10 +128,10 @@ export default class RegisterNameView extends View {
                 "set-gaia-name",
                 { name },
               );
-              if (WalletLoginManager.loggedInAddress) {
-                const user = await UserManager.getUser(
-                  WalletLoginManager.loggedInAddress,
-                );
+
+              const walletAddress = WalletLoginManager.getLoggedInAddress();
+              if (walletAddress) {
+                const user = await UserManager.getUser(walletAddress);
                 user.name = `${name}.gaia`;
                 UserManager.setUser(user);
               }
