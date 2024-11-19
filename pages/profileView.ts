@@ -11,5 +11,6 @@ export function profileView<T>(name: string): T {
         name.endsWith(".gaia") ? name : AddressUtils.shortenAddress(name),
       ),
     ),
+    el("main"),
   );
 }

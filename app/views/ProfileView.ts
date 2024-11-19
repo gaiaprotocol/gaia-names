@@ -7,7 +7,9 @@ import {
 } from "@common-module/app-components";
 import { UserManager } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
+import { AddressUtils } from "@common-module/wallet-utils";
 import { DeleteIcon, EditIcon } from "@gaiaprotocol/svg-icons";
+import { PersonaDisplay } from "gaiaprotocol";
 import { profileView } from "../../pages/profileView.js";
 import AppConfig from "../AppConfig.js";
 import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
@@ -78,7 +80,7 @@ export default class ProfileView extends View {
                 const walletAddress = WalletLoginManager.getLoggedInAddress();
                 if (walletAddress) {
                   const user = await UserManager.getUser(walletAddress);
-                  user.name = walletAddress;
+                  user.name = AddressUtils.shortenAddress(walletAddress);
                   UserManager.setUser(user);
                 }
                 Router.go(`/${walletAddress}`);
@@ -88,5 +90,9 @@ export default class ProfileView extends View {
         ),
       );
     }
+
+    new QueriedDomNode(".profile-view main").append(
+      new PersonaDisplay(walletAddress),
+    );
   }
 }
