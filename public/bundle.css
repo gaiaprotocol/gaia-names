@@ -335,8 +335,8 @@ a.button > .icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
 }
 button > .icon-container > .icon,
 a.button > .icon-container > .icon {
@@ -669,11 +669,8 @@ dialog.modal.structured-modal > footer {
     padding: 24px;
   }
 }
-dialog.modal.structured-modal > footer > button > .icon-container {
-  width: 24px;
-  height: 24px;
-}
-dialog.modal.alert-dialog > header > h1 {
+dialog.modal.alert-dialog > header > h1,
+dialog.modal.confirm-dialog > header > h1 {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -837,14 +834,24 @@ li.chat-message-list-item > main {
 .wallet-login-modal {
   max-width: 480px !important;
 }
+.wallet-connection-modal > main > .button-group > button > .icon-container,
+.wallet-login-modal > main > .button-group > button > .icon-container {
+  width: 32px;
+  height: 32px;
+}
 .network-mismatch-modal {
   max-width: 760px !important;
 }
-.network-mismatch-modal .alert.warning {
+.network-mismatch-modal > header > h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.network-mismatch-modal > main > .alert.warning {
   margin-top: 22px;
 }
 @container (width <= 520px) {
-  .network-mismatch-modal .alert.warning {
+  .network-mismatch-modal > main > .alert.warning {
     font-size: 16px;
   }
 }
@@ -855,11 +862,16 @@ li.chat-message-list-item > main {
     gap: 12px;
   }
 }
-.confirm-dialog.sign-message .alert.info {
+.confirm-dialog.sign-message > header > h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.confirm-dialog.sign-message > main > .alert.info {
   margin-top: 22px;
 }
 @container (width <= 520px) {
-  .confirm-dialog.sign-message .alert.info {
+  .confirm-dialog.sign-message > main > .alert.info {
     font-size: 16px;
   }
 }
@@ -1183,10 +1195,15 @@ li.chat-message-list-item > main {
   }
 }
 .profile-view > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 42px;
 }
 @container (width <= 520px) {
   .profile-view > header {
+    flex-direction: column;
     margin-bottom: 27px;
   }
 }
@@ -1197,6 +1214,11 @@ li.chat-message-list-item > main {
   .profile-view > header > h1 {
     font-size: 27px;
   }
+}
+.profile-view > header > .buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 .register-name-view {
   margin: 86px auto;
