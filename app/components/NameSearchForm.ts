@@ -48,4 +48,8 @@ export default class NameSearchForm extends DomNode {
       this.resultModal.query = name;
     }
   }
+
+  public focusInput(): void {
+    this.nameInput.focus();
+  }
 }

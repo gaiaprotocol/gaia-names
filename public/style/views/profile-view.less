@@ -8,10 +8,16 @@
   }
 
   >header {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    gap            : 16px;
+
     margin-bottom: 42px;
 
     @container (width <=@phone-width) {
-      margin-bottom: 27px;
+      flex-direction: column;
+      margin-bottom : 27px;
     }
 
     >h1 {
@@ -20,6 +26,12 @@
       @container (width <=@phone-width) {
         font-size: 27px;
       }
+    }
+
+    >.buttons {
+      display    : flex;
+      align-items: center;
+      gap        : 16px;
     }
   }
 }

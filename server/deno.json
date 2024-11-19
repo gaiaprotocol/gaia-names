@@ -1,5 +1,6 @@
 {
   "imports": {
-    "@common-module/universal-page": "npm:@common-module/universal-page@^0.1.7"
+    "@common-module/universal-page": "npm:@common-module/universal-page@^0.1.7",
+    "@common-module/wallet-utils": "npm:@common-module/wallet-utils@^0.2.2"
   }
 }

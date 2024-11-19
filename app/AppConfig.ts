@@ -5,7 +5,7 @@ import {
 } from "@common-module/app-components";
 import { SocialCompConfig } from "@common-module/social-components";
 import { AuthTokenManager, SupabaseConnector } from "@common-module/supabase";
-import { AddressUtils } from "@common-module/wallet";
+import { AddressUtils } from "@common-module/wallet-utils";
 import { WalletLoginConfig } from "@common-module/wallet-login";
 import { ProfileIcon } from "@gaiaprotocol/svg-icons";
 import { GaiaUIPreset } from "@gaiaprotocol/ui-preset";

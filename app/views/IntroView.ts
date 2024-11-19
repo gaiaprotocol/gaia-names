@@ -6,8 +6,18 @@ import NameSearchForm from "../components/NameSearchForm.js";
 import Layout from "./Layout.js";
 
 export default class IntroView extends View {
+  private static current: IntroView;
+
+  public static focusSearchInput() {
+    IntroView.current.nameSearchForm.focusInput();
+  }
+
+  private nameSearchForm: NameSearchForm;
+
   constructor() {
     super();
+    IntroView.current = this;
+
     document.title = (AppConfig.isDevMode ? "(Dev) " : "") + "Gaia Names";
 
     Layout.content = this.container = introView();
@@ -17,7 +27,7 @@ export default class IntroView extends View {
       el(
         "main",
         el("h2", "Gaia Names"),
-        new NameSearchForm(),
+        this.nameSearchForm = new NameSearchForm(),
         el(
           ".credit",
           "Created by ",
