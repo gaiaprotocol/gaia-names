@@ -68,30 +68,21 @@ class AppConfig {
         name: name
           ? `${name}.gaia`
           : AddressUtils.shortenAddress(walletAddress),
-        isFallback: true,
       };
     };
 
     SocialCompConfig.getLoggedInUserMenu = async (menu, user) => {
       return new DropdownMenuGroup(
-        user.isFallback
-          ? new DropdownMenuItem({
-            icon: new ProfileIcon(),
-            label: "Profile",
-            onClick: () => {
-              Router.go(
-                `/${user.name.endsWith(".gaia") ? user.name : user.id}`,
-              );
-              menu.remove();
-            },
-          })
-          : new DropdownMenuItem({
-            icon: new ProfileIcon(),
-            label: "Profile",
-            onClick: () => {
-              menu.remove();
-            },
-          }),
+        new DropdownMenuItem({
+          icon: new ProfileIcon(),
+          label: "Profile",
+          onClick: () => {
+            Router.go(
+              `/${user.name.endsWith(".gaia") ? user.name : user.id}`,
+            );
+            menu.remove();
+          },
+        }),
       );
     };
   }
