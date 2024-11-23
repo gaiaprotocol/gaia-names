@@ -1,7 +1,7 @@
 import { DomNode, el, Router } from "@common-module/app";
 import { AppCompConfig } from "@common-module/app-components";
 import { NextIcon } from "@gaiaprotocol/svg-icons";
-import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
+import { GaiaNameRepository } from "gaiaprotocol";
 import NameSearchResultList from "./NameSearchResultList.js";
 
 export default class NameSearchResultModal extends DomNode {
@@ -30,7 +30,7 @@ export default class NameSearchResultModal extends DomNode {
     const loadingSpinner = new AppCompConfig.LoadingSpinner();
     this.addClass("loading").clear(this.resultList).append(loadingSpinner);
 
-    const names = await GaiaNameRepository.searchNames(query);
+    const names = await GaiaNameRepository.search(query);
     const exactMatch = names.some((n) =>
       n.name.toLowerCase() === query.toLowerCase()
     );

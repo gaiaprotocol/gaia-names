@@ -8,9 +8,9 @@ import {
 import { UserManager } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
 import { CalendarIcon, LockIcon, OpenInNewIcon } from "@gaiaprotocol/svg-icons";
+import { GaiaNameRepository, GodMode } from "gaiaprotocol";
 import { registerNameView } from "../../pages/registerNameView.js";
 import AppConfig from "../AppConfig.js";
-import GaiaNameRepository from "../repositories/GaiaNameRepository.js";
 import Layout from "./Layout.js";
 
 export default class RegisterNameView extends View {
@@ -42,10 +42,10 @@ export default class RegisterNameView extends View {
     const loading = new AppCompConfig.LoadingSpinner().appendTo(this.container);
 
     const [eligible, existingName] = await Promise.all([
-      AppConfig.supabaseConnector.callEdgeFunction(
+      GodMode.supabaseConnector.callEdgeFunction(
         "check-god-mode",
       ),
-      GaiaNameRepository.fetchName(name),
+      GaiaNameRepository.fetchByName(name),
     ]);
 
     if (!eligible) {
@@ -124,7 +124,7 @@ export default class RegisterNameView extends View {
             type: ButtonType.Contained,
             title: "Register Name",
             onClick: async () => {
-              await AppConfig.supabaseConnector.callEdgeFunction(
+              await GodMode.supabaseConnector.callEdgeFunction(
                 "set-gaia-name",
                 { name },
               );
