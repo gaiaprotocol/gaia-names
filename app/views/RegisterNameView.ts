@@ -73,7 +73,7 @@ export default class RegisterNameView extends View {
         el("li", "Hold at least one The Gods NFT"),
       ),
       el(
-        ".buttons",
+        ".button-container",
         new Button({
           type: ButtonType.Contained,
           icon: new OpenInNewIcon(),
@@ -114,7 +114,7 @@ export default class RegisterNameView extends View {
           " by holding either 10,000 $GAIA or at least one The Gods NFT.",
         ),
         el(
-          ".buttons",
+          ".button-container",
           new Button({
             type: ButtonType.Outlined,
             title: "Cancel",

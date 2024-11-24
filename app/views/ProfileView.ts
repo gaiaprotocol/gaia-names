@@ -54,7 +54,7 @@ export default class ProfileView extends View {
     if (walletAddress === WalletLoginManager.getLoggedInAddress()) {
       new QueriedDomNode(".profile-view header").append(
         el(
-          ".buttons",
+          ".button-container",
           new Button({
             type: ButtonType.Contained,
             icon: new EditIcon(),
