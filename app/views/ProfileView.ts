@@ -9,7 +9,12 @@ import { UserManager } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
 import { AddressUtils } from "@common-module/wallet-utils";
 import { DeleteIcon, EditIcon } from "@gaiaprotocol/svg-icons";
-import { GaiaNameRepository, GodMode, PersonaDisplay } from "gaiaprotocol";
+import {
+  GaiaNameRepository,
+  GodMode,
+  PersonaDisplay,
+  PersonaRepository,
+} from "gaiaprotocol";
 import { profileView } from "../../pages/profileView.js";
 import AppConfig from "../AppConfig.js";
 import IntroView from "./IntroView.js";
@@ -45,7 +50,7 @@ export default class ProfileView extends View {
     loading.remove();
   }
 
-  private showProfile(walletAddress: string, name?: string) {
+  private async showProfile(walletAddress: string, name?: string) {
     if (walletAddress === WalletLoginManager.getLoggedInAddress()) {
       new QueriedDomNode(".profile-view header").append(
         el(
@@ -89,8 +94,12 @@ export default class ProfileView extends View {
       );
     }
 
-    new QueriedDomNode(".profile-view main").append(
-      new PersonaDisplay(walletAddress),
-    );
+    const main = new QueriedDomNode(".profile-view main");
+    const loadingSpinner = new AppCompConfig.LoadingSpinner().appendTo(main);
+    const persona = await PersonaRepository.fetchPersona(walletAddress);
+    loadingSpinner.remove();
+
+    if (!persona) main.append(el(".no-persona", "No persona found"));
+    else main.append(new PersonaDisplay(persona));
   }
 }
