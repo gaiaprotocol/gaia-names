@@ -100,6 +100,16 @@ export default class ProfileView extends View {
     loadingSpinner.remove();
 
     if (!persona) main.append(el(".no-persona", "No persona found"));
-    else main.append(new PersonaDisplay(persona));
+    else {
+      main.append(
+        new PersonaDisplay({
+          persona,
+          showEditButton:
+            persona.wallet_address === WalletLoginManager.getLoggedInAddress(),
+          onEditClick: () =>
+            window.open("https://personas.gaia.cc/edit-persona", "_blank"),
+        }),
+      );
+    }
   }
 }
