@@ -29,23 +29,18 @@ class AppConfig {
       supabaseConnector: GodMode.supabaseConnector,
     });
 
-    GaiaProtocolConfig.init(
-      config.isDevMode,
-      config.isDevMode,
-      GodMode.supabaseConnector,
-      GodMode.authTokenManager,
-    );
+    GaiaProtocolConfig.initForGodMode(config.isDevMode, config.isDevMode);
 
     SocialCompConfig.goLoggedInUserProfile = async (user) => {
       Router.go(`/${user.name.endsWith(".gaia") ? user.name : user.id}`);
     };
 
     SocialCompConfig.fetchUser = async (walletAddress: string) => {
-      const name = await GaiaNameRepository.fetchByWallet(walletAddress);
+      const data = await GaiaNameRepository.fetchByWallet(walletAddress);
       return {
         id: walletAddress,
-        name: name
-          ? `${name}.gaia`
+        name: data
+          ? `${data.name}.gaia`
           : AddressUtils.shortenAddress(walletAddress),
       };
     };
