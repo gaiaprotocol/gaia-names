@@ -38,7 +38,8 @@ export default class ProfileView extends View {
   }
 
   private async loadName(name: string) {
-    const loading = new AppCompConfig.LoadingSpinner().appendTo(this.container);
+    const main = new QueriedDomNode(".profile-view main");
+    const loadingSpinner = new AppCompConfig.LoadingSpinner().appendTo(main);
 
     const existingName = await GaiaNameRepository.fetchByName(name);
     if (!existingName) {
@@ -47,7 +48,7 @@ export default class ProfileView extends View {
       this.showProfile(existingName.wallet_address, existingName.name);
     }
 
-    loading.remove();
+    loadingSpinner.remove();
   }
 
   private async showProfile(walletAddress: string, name?: string) {
