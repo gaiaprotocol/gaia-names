@@ -2579,6 +2579,10 @@ li.chat-content-list-item.temp {
   font-weight: bold;
   color: #b4b4b4;
 }
+.name-search-result-modal > .loading-spinner {
+  width: 32px;
+  height: 32px;
+}
 .name-search-result-modal .name-search-result-list-item,
 .name-search-result-modal .available-name {
   display: flex;
@@ -2745,6 +2749,10 @@ li.chat-content-list-item.temp {
   .register-name-view {
     margin-top: 54px;
   }
+}
+.register-name-view > .loading-spinner {
+  width: 32px;
+  height: 32px;
 }
 .register-name-view > header {
   display: flex;

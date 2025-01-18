@@ -41,13 +41,14 @@ export default class RegisterNameView extends View {
   private async render(name: string) {
     const loading = new AppCompConfig.LoadingSpinner().appendTo(this.container);
 
-    const [eligible, existingName] = await Promise.all([
+    const [eligibleStr, existingName] = await Promise.all([
       GodMode.supabaseConnector.callEdgeFunction(
         "check-god-mode",
       ),
       GaiaNameRepository.fetchByName(name),
     ]);
 
+    const eligible = eligibleStr === "true";
     if (!eligible) {
       this.showNotEligible();
     } else if (existingName) {
