@@ -46,18 +46,20 @@ class AppConfig {
     };
 
     SocialCompConfig.getLoggedInUserMenu = async (menu, user) => {
-      return new DropdownMenuGroup(
-        new DropdownMenuItem({
-          icon: new ProfileIcon(),
-          label: "Profile",
-          onClick: () => {
-            Router.go(
-              `/${user.name.endsWith(".gaia") ? user.name : user.id}`,
-            );
-            menu.remove();
-          },
-        }),
-      );
+      return [
+        new DropdownMenuGroup(
+          new DropdownMenuItem({
+            icon: new ProfileIcon(),
+            label: "Profile",
+            onClick: () => {
+              Router.go(
+                `/${user.name.endsWith(".gaia") ? user.name : user.id}`,
+              );
+              menu.remove();
+            },
+          }),
+        ),
+      ];
     };
   }
 }
