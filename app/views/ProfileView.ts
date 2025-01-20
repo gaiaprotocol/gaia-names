@@ -11,6 +11,7 @@ import { AddressUtils } from "@common-module/wallet-utils";
 import { DeleteIcon, EditIcon } from "@gaiaprotocol/svg-icons";
 import {
   GaiaNameRepository,
+  GaiaProtocolConfig,
   GodMode,
   PersonaDisplay,
   PersonaRepository,
@@ -79,6 +80,9 @@ export default class ProfileView extends View {
 
                 await GodMode.supabaseConnector.callEdgeFunction(
                   "remove-gaia-name",
+                );
+                await GaiaProtocolConfig.supabaseConnector.callEdgeFunction(
+                  "reload-persona-name",
                 );
 
                 const walletAddress = WalletLoginManager.getLoggedInAddress();
