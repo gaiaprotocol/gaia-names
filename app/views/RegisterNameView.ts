@@ -8,7 +8,7 @@ import {
 import { UserManager } from "@common-module/social-components";
 import { WalletLoginManager } from "@common-module/wallet-login";
 import { CalendarIcon, LockIcon, OpenInNewIcon } from "@gaiaprotocol/svg-icons";
-import { GaiaNameRepository, GodMode } from "gaiaprotocol";
+import { GaiaNameRepository, GaiaProtocolConfig, GodMode } from "gaiaprotocol";
 import { registerNameView } from "../../pages/registerNameView.js";
 import AppConfig from "../AppConfig.js";
 import Layout from "./Layout.js";
@@ -35,6 +35,7 @@ export default class RegisterNameView extends View {
       this.render(data.name.replace(".gaia", "").toLowerCase());
     } else {
       Router.goWithoutHistory("/");
+      WalletLoginManager.login();
     }
   }
 
@@ -129,10 +130,13 @@ export default class RegisterNameView extends View {
                 "set-gaia-name",
                 { name },
               );
+              await GaiaProtocolConfig.supabaseConnector.callEdgeFunction(
+                "reload-persona-name",
+              );
 
               const walletAddress = WalletLoginManager.getLoggedInAddress();
               if (walletAddress) {
-                const user = await UserManager.getUser(walletAddress);
+                const user = { ...await UserManager.getUser(walletAddress) };
                 user.name = `${name}.gaia`;
                 UserManager.setUser(user);
               }

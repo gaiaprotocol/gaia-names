@@ -83,7 +83,7 @@ export default class ProfileView extends View {
 
                 const walletAddress = WalletLoginManager.getLoggedInAddress();
                 if (walletAddress) {
-                  const user = await UserManager.getUser(walletAddress);
+                  const user = { ...await UserManager.getUser(walletAddress) };
                   user.name = AddressUtils.shortenAddress(walletAddress);
                   UserManager.setUser(user);
                 }
