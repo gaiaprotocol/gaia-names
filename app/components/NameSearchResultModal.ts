@@ -4,6 +4,12 @@ import { NextIcon } from "@gaiaprotocol/svg-icons";
 import { GaiaNameRepository } from "gaiaprotocol";
 import NameSearchResultList from "./NameSearchResultList.js";
 
+const blacklist = [
+  "gaia",
+  "gaiaprotocol",
+  "gaia_protocol",
+];
+
 export default class NameSearchResultModal extends DomNode {
   private searchNonce = 0;
 
@@ -30,23 +36,28 @@ export default class NameSearchResultModal extends DomNode {
     const loadingSpinner = new AppCompConfig.LoadingSpinner();
     this.addClass("loading").clear(this.resultList).append(loadingSpinner);
 
-    const names = await GaiaNameRepository.search(query);
-    const exactMatch = names.some((n) =>
+    const allNames = await GaiaNameRepository.search(query);
+
+    const filteredNames = allNames.filter(
+      (n) => !blacklist.includes(n.name.toLowerCase()),
+    );
+
+    const exactMatch = filteredNames.some((n) =>
       n.name.toLowerCase() === query.toLowerCase()
     );
 
-    this.resultList.names = names.map((n) => n.name);
+    this.resultList.names = filteredNames.map((n) => n.name);
 
-    if (!exactMatch) {
+    if (!exactMatch && !blacklist.includes(query.toLowerCase())) {
       const availableName = `${query.toLowerCase()}.gaia`;
+
       this.availableNameDisplay = el(
         ".available-name-display",
         el("h3", "Available"),
         el("a.available-name", availableName, new NextIcon(), {
           onclick: () => Router.go(`/${availableName}/register`),
         }),
-      ).appendTo(this);
-      this.availableNameDisplay.on(
+      ).appendTo(this).on(
         "remove",
         () => this.availableNameDisplay = undefined,
       );
