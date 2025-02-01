@@ -29,12 +29,13 @@ export default class ProfileView extends View {
   }
 
   public changeData(data: { name: string }): void {
-    Layout.content = this.container = profileView(data.name);
+    const name = decodeURIComponent(data.name);
+    Layout.content = this.container = profileView(name);
 
-    if (data.name.endsWith(".gaia")) {
-      this.loadName(data.name.replace(".gaia", "").toLowerCase());
+    if (name.endsWith(".gaia")) {
+      this.loadName(name.replace(".gaia", "").toLowerCase());
     } else {
-      this.showProfile(data.name);
+      this.showProfile(name);
     }
   }
 

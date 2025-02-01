@@ -21,7 +21,8 @@ export default class RegisterNameView extends View {
   }
 
   public changeData(data: { name: string }): void {
-    Layout.content = this.container = registerNameView(data.name);
+    const name = decodeURIComponent(data.name);
+    Layout.content = this.container = registerNameView(name);
 
     new QueriedDomNode(".register-name-view header a.back").onDom(
       "click",
@@ -32,7 +33,7 @@ export default class RegisterNameView extends View {
     );
 
     if (WalletLoginManager.isLoggedIn()) {
-      this.render(data.name.replace(".gaia", "").toLowerCase());
+      this.render(name.replace(".gaia", "").toLowerCase());
     } else {
       Router.goWithoutHistory("/");
       WalletLoginManager.login();
