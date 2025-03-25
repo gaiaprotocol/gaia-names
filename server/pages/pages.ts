@@ -1,9 +1,9 @@
 import { createPage, el } from "@common-module/ssr";
 import { el as UniversalEl, html } from "@common-module/universal-page";
-import { introView } from "../pages/introView.ts";
-import { profileView } from "../pages/profileView.ts";
-import { registerNameView } from "../pages/registerNameView.ts";
-import { layout } from "./pages/layout.ts";
+import { introView } from "../../pages/introView.js";
+import { profileView } from "../../pages/profileView.js";
+import { registerNameView } from "../../pages/registerNameView.js";
+import { layout } from "./layout.js";
 
 UniversalEl.impl = el;
 html.impl = (htmlContent) => htmlContent;
