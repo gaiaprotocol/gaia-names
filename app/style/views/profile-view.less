@@ -1,0 +1,44 @@
+.profile-view {
+  margin   : 86px auto;
+  max-width: 1128px;
+  padding  : 0 20px;
+
+  @container (width <=@phone-width) {
+    margin-top: 54px;
+  }
+
+  >header {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    gap            : 16px;
+
+    margin-bottom: 42px;
+
+    @container (width <=@phone-width) {
+      flex-direction: column;
+      margin-bottom : 27px;
+    }
+
+    >h1 {
+      font-size: 36px;
+
+      @container (width <=@phone-width) {
+        font-size: 27px;
+      }
+    }
+
+    >.button-container {
+      display    : flex;
+      align-items: center;
+      gap        : 16px;
+    }
+  }
+
+  >main {
+    >.loading-spinner {
+      width : 32px;
+      height: 32px;
+    }
+  }
+}
